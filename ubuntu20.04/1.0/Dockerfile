@@ -5,6 +5,11 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     apt-get clean
 
+# Add Tini
+ENV TINI_VERSION v0.19.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+
 ADD timelapse-snapper/requirements.txt /
 RUN pip3 install -r requirements.txt
 
@@ -16,4 +21,4 @@ RUN chown root:root timelapse-snapper.py
 
 EXPOSE 9000
 
-ENTRYPOINT ["/timelapse-snapper.py"]
+ENTRYPOINT ["/tini", "--", "/timelapse-snapper.py"]
