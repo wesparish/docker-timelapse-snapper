@@ -40,7 +40,7 @@ buildDate=$(date +%Y-%m-%d-%H%M%S)
 set -e
 
 for dockerfile in $(find  -name Dockerfile); do
-  rsync -av --delete ./crypto-prometheus/ $(dirname $dockerfile)/crypto-prometheus/
+  rsync -av --delete ./timelapse-snapper/ $(dirname $dockerfile)/timelapse-snapper/
   versionvariant=$(dirname $dockerfile | sed -e 's|^./||g' -e 's|/|-|g')
   echo Building variant: $versionvariant
   echo docker build -t $registry/${imagename}:${versionvariant} $(dirname $dockerfile)

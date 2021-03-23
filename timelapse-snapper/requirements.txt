@@ -1,2 +1,2 @@
-python-dateutil
 prometheus-client
+requests

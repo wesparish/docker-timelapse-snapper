@@ -8,12 +8,12 @@ RUN apt-get update && \
 ADD timelapse-snapper/requirements.txt /
 RUN pip3 install -r requirements.txt
 
-ENV LOG_LEVEL="WARN" LC_ALL=C.UTF-8 LANG=C.UTF-8
+ENV LOG_LEVEL="INFO" LC_ALL=C.UTF-8 LANG=C.UTF-8
 
 ADD timelapse-snapper/lib /lib
 COPY timelapse-snapper/timelapse-snapper.py /timelapse-snapper.py
 RUN chown root:root timelapse-snapper.py
 
-EXPOSE 5000
+EXPOSE 9000
 
 ENTRYPOINT ["/timelapse-snapper.py"]
